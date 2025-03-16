@@ -43,8 +43,7 @@ public class BinarySearch {
         }
         return  -1;
     }
-    public  int  firstOccurence(int[] nums,int target)
-    {
+    public  int  firstOccurence(int[] nums,int target) {
         int left = 0, right = nums.length - 1;
         int firstOccurence=-1;
         while (left <= right) {
@@ -62,8 +61,7 @@ public class BinarySearch {
         }
         return firstOccurence;
     }
-    public  int  lastOccurence(int[] nums,int target)
-    {
+    public  int  lastOccurence(int[] nums,int target) {
         int left = 0, right = nums.length - 1;
         int firstOccurence=-1;
         while (left <= right) {
@@ -81,6 +79,23 @@ public class BinarySearch {
         }
         return firstOccurence;
     }
+    public  int  findSmallestMissing(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        int firstOccurence=-1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (mid == nums[mid]) {
+                left=mid+1;
+            }
+            else if (mid<nums[mid]) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
     public static void main(String[] args) {
         int nums[] = { 2, 5, 6, 8, 9, 10 };
         BinarySearch binarySearch= new BinarySearch(nums);
@@ -94,12 +109,12 @@ public class BinarySearch {
         System.out.println(binarySearch.noOfRotation(circularrotatedArray));
 
 
-        int Ocurence[] ={1,2,3,3,3,4,4,5,6,6,6,7,8,9};
+        int Occurence[] ={1,2,3,3,3,4,4,5,6,6,6,7,8,9};
         System.out.println(binarySearch.firstOccurence(Ocurence,2)==1);
         System.out.println(binarySearch.firstOccurence(Ocurence,3)==2);
         System.out.println(binarySearch.firstOccurence(Ocurence,4)==5);
         System.out.println(binarySearch.firstOccurence(Ocurence,5)==7);
-        System.out.println(binarySearch.firstOccurence(Ocurence,6)==9);
+        System.out.println(binarySearch.firstOccurence(Ocurence,6)==8);
 
 
 
@@ -108,6 +123,12 @@ public class BinarySearch {
         System.out.println(binarySearch.lastOccurence(Ocurence,4)==6);
         System.out.println(binarySearch.lastOccurence(Ocurence,5)==7);
         System.out.println(binarySearch.lastOccurence(Ocurence,6)==10);
+
+        System.out.println(binarySearch.findSmallestMissing(new int[]{0,1,2,3,4,5,6,8,9,10})==7);
+        System.out.println(binarySearch.findSmallestMissing(new int[]{0,1,3,4,5,6,7,8,9,10})==2);
+        System.out.println(binarySearch.findSmallestMissing(new int[]{0,2,3,4,5,6,7,8,9,10})==1);
+        System.out.println(binarySearch.findSmallestMissing(new int[]{1,2,3,4,5,6,7,8,9,10})==0);
+
 
 
         //
